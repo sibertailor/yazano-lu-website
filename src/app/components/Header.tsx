@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Search, ShoppingCart, MessageCircle } from 'lucide-react';
-import { Link, NavLink, useNavigate } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 const categoryLinks = [
   { name: 'Altın Susamlı Tahin', path: '/products/altin-susamli-tahin' },

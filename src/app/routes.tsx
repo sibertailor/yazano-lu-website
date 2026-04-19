@@ -1,11 +1,10 @@
-import { createBrowserRouter } from "react-router";
 import { Home } from "./pages/Home";
 import { Products } from "./pages/Products";
 import { About } from "./pages/About";
 import { Factory } from "./pages/Factory";
 import { Contact } from "./pages/Contact";
 import { RootLayout } from "./layouts/RootLayout";
-
+import { createBrowserRouter } from "react-router-dom";
 import { AltinSusamliTahinPage } from "./pages/AltinSusamliTahinPage";
 import { PekmezPage } from "./pages/PekmezPage";
 import { LokumPage } from "./pages/LokumPage";
