@@ -95,7 +95,7 @@ export function Hero() {
               </h2>
 
               <p className="text-xl text-stone-1500 max-w-md leading-relaxed">
-                Geleneksel üretim anlayışımızla tahin, helva ve doğal ürünleri sofralarınıza taşıyoruz.
+                Yazanoğlu ile Altın Susam’dan doğan gerçek lezzet… Bir kez tadın, vazgeçemeyeceksiniz. 
               </p>
 
               <div className="flex flex-wrap gap-4">

@@ -60,14 +60,33 @@ export function Home() {
   return (
     <>
       <Hero />
-      
+
       {/* Categories Section */}
-      <section className="py-20 bg-white">
+      <section className="pt-12 pb-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-serif text-stone-900 mb-4">Ürün Kategorileri</h2>
-            <p className="text-xl text-stone-600">Geleneksel lezzetlerimizi keşfedin</p>
+          <div className="relative text-center max-w-3xl mx-auto mb-12 overflow-hidden">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <img
+                src="/images/yazanoglu-logo.png"
+                alt="Yazanoğlu Logo"
+                className="w-56 md:w-72 lg:w-80 object-contain opacity-10 blur-[1px]"
+              />
+            </div>
+
+            <div className="relative z-10">
+              <span className="inline-block mb-4 px-4 py-1.5 rounded-full bg-amber-50 text-amber-800 text-sm font-medium tracking-wide">
+                Yazanoğlu Kalitesi
+              </span>
+              <h2 className="text-3xl md:text-5xl font-serif text-stone-900 mb-4">
+                Sofralarınıza Değer Katan Lezzetler
+              </h2>
+              <p className="text-base md:text-lg text-stone-600 leading-8">
+                Altın Susam kalitesi ve Yazanoğlu ustalığıyla hazırlanan tahin, helva,
+                lokum ve özel ürün çeşitlerimizi keşfedin.
+              </p>
+            </div>
           </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {categories.map((category, index) => (
               <CategoryCard key={index} {...category} />
@@ -77,7 +96,7 @@ export function Home() {
       </section>
 
       <BrandStory />
-      
+
       <WhyChooseUs />
 
       {/* Featured Products Section */}
@@ -96,7 +115,7 @@ export function Home() {
       </section>
 
       <Campaign />
-      
+
       <WhatsAppOrder />
     </>
   );
