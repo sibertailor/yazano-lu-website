@@ -179,7 +179,7 @@ const suggestions = useMemo(() => {
             <h1 className="text-2xl md:text-3xl font-serif text-amber-900 leading-none">
               Yazanoğlu
             </h1>
-            <p className="text-xs text-stone-600 mt-1">1930'dan Beri</p>
+            <p className="text-xs text-stone-600 mt-1">1930'dan beri</p>
           </Link>
 
           <div ref={searchBoxRef} className="flex-1">
@@ -196,7 +196,7 @@ const suggestions = useMemo(() => {
                     setShowSuggestions(true);
                   }}
                   onKeyDown={handleKeyDown}
-                  placeholder="Helva, Lokum, Tahin..."
+                  placeholder="Özenle üretilmiş tatları keşfetmek için arayın..."
                   className="w-full h-14 rounded-full border border-amber-900/40 pl-14 pr-16 text-lg text-stone-700 outline-none focus:border-amber-900"
                 />
 

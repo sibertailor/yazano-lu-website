@@ -1,57 +1,69 @@
+import { useEffect, useState } from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 export function BrandStory() {
+  const [titleAnimated, setTitleAnimated] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTitleAnimated(true);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section id="about" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-16 items-center">
-          {/* Image */}
           <div className="relative">
             <div className="absolute -inset-4 bg-amber-100 rounded-3xl -rotate-3"></div>
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1759508858607-d2cb26efdbcc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuYXR1cmFsJTIwb3JnYW5pYyUyMGZvb2QlMjBwcm9kdWN0aW9ufGVufDF8fHx8MTc3MzQzOTY4Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              src="/images/susamtop.png"
               alt="Traditional production"
               className="relative rounded-3xl shadow-xl w-full h-[500px] object-cover"
             />
           </div>
 
-          {/* Content */}
           <div className="space-y-6">
-            <div className="inline-block px-4 py-2 bg-amber-100 rounded-full text-amber-900 text-sm">
-              Hikayemiz
+            <div className="relative mb-2 flex min-h-[160px] items-center justify-center">
+              <span
+                className={`pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[70px] font-extrabold tracking-[-2px] text-[#e5e2db] transition-all duration-1000 md:text-[85px] ${
+                  titleAnimated ? 'opacity-100 blur-0' : 'opacity-0 blur-[2px]'
+                }`}
+              >
+                Gelenekten Gelen
+              </span>
+
+              <h2
+                className={`relative z-10 translate-y-4 text-center text-[38px] font-bold text-[#1f1f1f] transition-all duration-700 md:text-[45px] ${
+                  titleAnimated ? 'translate-y-4 opacity-100' : 'translate-y-8 opacity-0'
+                }`}
+              >
+                Doğal Lezzet
+              </h2>
             </div>
-            <h2 className="text-4xl font-serif text-stone-900">
-              1930'dan Beri<br />
-              Kalite ve Gelenek
-            </h2>
+
             <div className="space-y-4 text-stone-600 text-lg">
               <p>
-                1930'dan beri geleneksel üretim anlayışı ile doğal ve katkısız ürünler üretiyoruz. 
-                Seri üretim değil kalite odaklı üretim yapıyoruz.
+                1930 yılından bu yana, köklü üretim geleneğimizi modern kalite
+                standartlarıyla birleştirerek doğal ve katkısız ürünler sunuyoruz.
+                Seri üretim yerine, her aşaması titizlikle kontrol edilen, kalite
+                odaklı bir üretim anlayışını benimsiyoruz.
               </p>
               <p>
-                Ürünlerimizde gerçek susam, gerçek üzüm pekmezi ve doğal malzemeler kullanıyoruz. 
-                Glikoz şurubu, yapay aroma ve koruyucu madde içermez.
+                Ürünlerimizde yalnızca gerçek susam, doğal üzüm pekmezi ve özenle
+                seçilmiş hammaddeler kullanılır. Glikoz şurubu, yapay aroma ve
+                koruyucu katkı maddelerine kesinlikle yer verilmez.
               </p>
               <p>
-                Geleneksel ustalık, doğal ürünler ve premium kalite anlayışımızla, 
-                ailenize güvenle sunabileceğiniz lezzetler üretiyoruz.
+                Geleneksel ustalığın deneyimi ile doğal içerikleri buluşturan
+                üretim yaklaşımımız sayesinde, aileniz için güvenle tercih
+                edebileceğiniz, yüksek kalite standartlarında lezzetler sunuyoruz.
               </p>
             </div>
-            <div className="flex gap-8 pt-6">
-              <div>
-                <div className="text-4xl font-serif text-amber-900 mb-2">93+</div>
-                <div className="text-stone-600">Yıllık Deneyim</div>
-              </div>
-              <div>
-                <div className="text-4xl font-serif text-amber-900 mb-2">100%</div>
-                <div className="text-stone-600">Doğal Ürün</div>
-              </div>
-              <div>
-                <div className="text-4xl font-serif text-amber-900 mb-2">20+</div>
-                <div className="text-stone-600">Farklı Ürün</div>
-              </div>
-            </div>
+
+            <div className="flex gap-8 pt-6"></div>
           </div>
         </div>
       </div>
