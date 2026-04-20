@@ -36,7 +36,7 @@ export function BrandStory() {
               </span>
 
               <h2
-                className={`relative z-10 translate-y-4 text-center text-[38px] font-bold text-[#1f1f1f] transition-all duration-700 md:text-[45px] ${
+                className={`relative z-10 translate-y-4 text-center text-[38px] font-bold text-[#1f1f1f] transition-all duration-700 md:text-[60px] ${
                   titleAnimated ? 'translate-y-4 opacity-100' : 'translate-y-8 opacity-0'
                 }`}
               >
