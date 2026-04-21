@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react';
+
 import { Hero } from '../components/Hero';
 import { ProductCard } from '../components/ProductCard';
 import { CategoryCard } from '../components/CategoryCard';
@@ -5,7 +7,6 @@ import { WhyChooseUs } from '../components/WhyChooseUs';
 import { BrandStory } from '../components/BrandStory';
 import { WhatsAppOrder } from '../components/WhatsAppOrder';
 import { Campaign } from '../components/Campaign';
-
 
 const categories = [
   {
@@ -36,54 +37,96 @@ const categories = [
 
 const featuredProducts = [
   {
-    name: "Çifte Kavrulmuş Tahin",
-    price: "₺245",
+    name: "Çifte Kavrulmuş Tahin (950 Gr)",
+    description: "Altın susamdan üretilmiş yoğun aromalı tahin",
+    price: "₺650",
     category: "En Çok Satan",
-    image: "https://images.unsplash.com/photo-1747932984398-dd52d84886d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWhpbmklMjBzZXNhbWUlMjBwYXN0ZSUyMGJvd2x8ZW58MXx8fHwxNzc1MTUxMTQ2fDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "/images/cifte-kavrulmus.png"
   },
   {
     name: "Tahin Pekmez Seti",
-    price: "₺395",
+    description: "450gr tahin + 600gr Doğal üzüm pekmezi",
+    price: "₺500",
     category: "En Çok Satan",
-    image: "https://images.unsplash.com/photo-1682482003050-49c10c481a44?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2xhc3NlcyUyMHBla21leiUyMGdyYXBlJTIwc3lydXB8ZW58MXx8fHwxNzc1MTUxMTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "/images/tahin-pekmez.png"
   },
   {
-    name: "Antep Fıstıklı Helva",
-    price: "₺285",
+    name: "Antep Fıstıklı Helva (700 Gr)",
+    description: "Bol fıstıklı, ağızda dağılan doğal helva",
+    price: "₺600",
     category: "En Çok Satan",
-    image: "https://images.unsplash.com/photo-1608196696432-baa735dd7e58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwzfHxoYWx2YSUyMHRyYWRpdGlvbmFsJTIwdHVya2lzaCUyMHN3ZWV0fGVufDF8fHx8MTc3NTE1MTE0N3ww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "/images/antepfistikli-helva.png"
   },
   {
-    name: "Antep Fıstıklı Lokum",
-    price: "₺165",
+    name: "Antep Fıstıklı Lokum (400 Gr)",
+    description: "Yumuşak dokulu, bol fıstıklı lokum",
+    price: "₺400",
     category: "En Çok Satan",
-    image: "https://images.unsplash.com/photo-1762808626502-a25dc8f6be6c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0dXJraXNoJTIwZGVsaWdodCUyMGxva3VtJTIwZGVzc2VydHxlbnwxfHx8fDE3NzUxNTExNDd8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "/images/antepli-lokum.png"
   }
 ];
 
 export function Home() {
+  const titleRef = useRef<HTMLDivElement | null>(null);
+  const [titleVisible, setTitleVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTitleVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (titleRef.current) {
+      observer.observe(titleRef.current);
+    }
+
+    return () => {
+      if (titleRef.current) {
+        observer.unobserve(titleRef.current);
+      }
+    };
+  }, []);
+
   return (
     <>
       <Hero />
 
-      {/* Categories Section */}
+      {/* Categories */}
       <section className="pt-12 pb-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="relative text-center max-w-3xl mx-auto mb-12 overflow-hidden">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+          {/* ANIMASYONLU BAŞLIK */}
+          <div
+            ref={titleRef}
+            className="relative mb-16 flex min-h-[160px] items-center justify-center overflow-hidden"
+          >
+            {/* SOL TARAF (arka yazı) */}
+            <span
+              className={`pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-y-1/2 whitespace-nowrap text-[70px] font-extrabold tracking-[-2px] text-[#e5e2db] transition-all duration-[1400ms] ease-out md:text-[85px] ${
+                titleVisible
+                  ? '-translate-x-1/2 opacity-100'
+                  : '-translate-x-[140%] opacity-0'
+              }`}
+            >
+              Sofralarınıza Değer
+            </span>
 
+            {/* SAĞDAN GELEN */}
+            <h2
+              className={`relative z-10 mt-14 text-center text-[38px] font-bold text-[#1f1f1f] transition-all duration-[1400ms] delay-200 ease-out md:text-[60px] ${
+                titleVisible
+                  ? 'translate-x-0 opacity-100'
+                  : 'translate-x-[140%] opacity-0'
+              }`}
+            >
+              Katan Lezzetler
+            </h2>
+          </div>
 
-            <div className="relative z-10">
-              <span className="inline-block mb-4 px-4 py-1.5 rounded-full bg-amber-50 text-amber-800 text-2xl font-medium tracking-wide">
-                Yazanoğlu Kalitesi
-              </span>
-              <h2 className="text-3xl md:text-5xl font-serif text-stone-900 mb-4">
-                Sofralarınıza Değer Katan Lezzetler
-              </h2>
-              <p className="text-base md:text-lg text-stone-600 leading-8">
-                Altın Susam kalitesi ve Yazanoğlu ustalığıyla hazırlanan tahin, helva,
-                lokum ve özel ürün çeşitlerimizi keşfedin.
-              </p>
-            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -95,16 +138,40 @@ export function Home() {
       </section>
 
       <BrandStory />
-
       <WhyChooseUs />
 
-      {/* Featured Products Section */}
+      {/* Featured Products */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-serif text-stone-900 mb-4">Öne Çıkan Ürünler</h2>
-            <p className="text-xl text-stone-600">En çok tercih edilen lezzetlerimiz</p>
+
+          {/* ANIMASYONLU BAŞLIK */}
+          <div
+            ref={titleRef}
+            className="relative mb-16 flex min-h-[160px] items-center justify-center overflow-hidden"
+          >
+            {/* SOL TARAF (arka yazı) */}
+            <span
+              className={`pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-y-1/2 whitespace-nowrap text-[70px] font-extrabold tracking-[-2px] text-[#e5e2db] transition-all duration-[1400ms] ease-out md:text-[85px] ${
+                titleVisible
+                  ? '-translate-x-1/2 opacity-100'
+                  : '-translate-x-[140%] opacity-0'
+              }`}
+            >
+              Çok Tercih Edilen
+            </span>
+
+            {/* SAĞDAN GELEN */}
+            <h2
+              className={`relative z-10 mt-14 text-center text-[38px] font-bold text-[#1f1f1f] transition-all duration-[1400ms] delay-200 ease-out md:text-[60px] ${
+                titleVisible
+                  ? 'translate-x-0 opacity-100'
+                  : 'translate-x-[140%] opacity-0'
+              }`}
+            >
+              Lezzetlerimiz
+            </h2>
           </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {featuredProducts.map((product, index) => (
               <ProductCard key={index} {...product} />
@@ -114,7 +181,6 @@ export function Home() {
       </section>
 
       <Campaign />
-
       <WhatsAppOrder />
     </>
   );
